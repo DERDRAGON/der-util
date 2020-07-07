@@ -15,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <swagger.version>2.9.1</swagger.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -74,12 +75,12 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
         <!--  swagger 生成文档 -->
 
