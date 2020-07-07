@@ -1,0 +1,340 @@
+{
+  "info" : {
+    "name" : "工具项目标题",
+    "_postman_id" : "der-tool",
+    "description" : "工具项目描述",
+    "schema" : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item" : [ {
+    "name" : "DisableSwaggerUiControllerConfig",
+    "item" : [ {
+      "id" : "f11ef223-7795-4590-be15-afcff65b6a03",
+      "name" : "getSwagger",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/swagger-ui.html",
+          "query" : [ ]
+        },
+        "method" : "GET",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/swagger-ui.html",
+            "query" : [ ]
+          },
+          "method" : "GET",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "null",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    } ]
+  }, {
+    "name" : "DemoController",
+    "item" : [ {
+      "id" : "a087933b-e27a-4618-8b90-b0d6258afbf4",
+      "name" : "test",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/demo/test",
+          "query" : [ ]
+        },
+        "method" : "GET",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/demo/test",
+            "query" : [ ]
+          },
+          "method" : "GET",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "\"\"",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    } ]
+  }, {
+    "name" : "api接口文档演示controller",
+    "item" : [ {
+      "id" : "f440a900-1910-4b32-bc5d-0eba516257e1",
+      "name" : "ip列表",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/docs/list",
+          "query" : [ {
+            "key" : "id",
+            "type" : "Integer",
+            "value" : "",
+            "description" : "0",
+            "disabled" : false
+          }, {
+            "key" : "ip",
+            "type" : "String",
+            "value" : "",
+            "description" : "",
+            "disabled" : false
+          } ]
+        },
+        "method" : "GET",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/docs/list",
+            "query" : [ {
+              "key" : "id",
+              "type" : "Integer",
+              "value" : "",
+              "description" : "0",
+              "disabled" : false
+            }, {
+              "key" : "ip",
+              "type" : "String",
+              "value" : "",
+              "description" : "",
+              "disabled" : false
+            } ]
+          },
+          "method" : "GET",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "{\r\n  \"code\" : 0,\r\n  \"msg\" : \"\",\r\n  \"data\" : [ {\r\n    \"id\" : 0,\r\n    \"ip\" : \"\"\r\n  } ]\r\n}",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    } ]
+  }, {
+    "name" : "swagger演示controller",
+    "item" : [ {
+      "id" : "433ff451-d013-408e-8716-2ef1fb0c0fec",
+      "name" : "getAllPersons",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/v2/persons/",
+          "query" : [ ]
+        },
+        "method" : "GET",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/v2/persons/",
+            "query" : [ ]
+          },
+          "method" : "GET",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "{\r\n  \"code\" : 0,\r\n  \"msg\" : \"\",\r\n  \"data\" : [ {\r\n    \"id\" : 0,\r\n    \"firstName\" : \"\",\r\n    \"lastName\" : \"\",\r\n    \"age\" : 0\r\n  } ]\r\n}",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    }, {
+      "id" : "f65eb960-aa78-4413-8d6c-02443ffafa70",
+      "name" : "getPersonById",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/v2/persons/",
+          "query" : [ {
+            "key" : "id",
+            "type" : "int",
+            "value" : "",
+            "description" : "0",
+            "disabled" : false
+          } ]
+        },
+        "method" : "GET",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/v2/persons/",
+            "query" : [ {
+              "key" : "id",
+              "type" : "int",
+              "value" : "",
+              "description" : "0",
+              "disabled" : false
+            } ]
+          },
+          "method" : "GET",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "{\r\n  \"code\" : 0,\r\n  \"msg\" : \"\",\r\n  \"data\" : {\r\n    \"id\" : 0,\r\n    \"firstName\" : \"\",\r\n    \"lastName\" : \"\",\r\n    \"age\" : 0\r\n  }\r\n}",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    }, {
+      "id" : "baa41705-4077-4645-b9ee-a85ef0cbb418",
+      "name" : "deletePerson",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/v2/persons/",
+          "query" : [ ]
+        },
+        "method" : "DELETE",
+        "header" : [ ],
+        "body" : {
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/v2/persons/",
+            "query" : [ ]
+          },
+          "method" : "DELETE",
+          "header" : [ ],
+          "body" : {
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "{\r\n  \"code\" : 0,\r\n  \"msg\" : \"\"\r\n}",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    }, {
+      "id" : "b8fc0f2c-278f-4257-b98a-69b8247da697",
+      "name" : "createPerson",
+      "request" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "{{host}}",
+          "path" : "/v2/persons/",
+          "query" : [ ]
+        },
+        "method" : "POST",
+        "header" : [ {
+          "key" : "Content-Type",
+          "value" : "application/json"
+        } ],
+        "body" : {
+          "mode" : "raw",
+          "raw" : "{\r\n  \"id\" : 0,\r\n  \"firstName\" : \"\",\r\n  \"lastName\" : \"\",\r\n  \"age\" : 0\r\n}",
+          "urlencoded" : [ ],
+          "formdata" : [ ]
+        }
+      },
+      "response" : [ {
+        "name" : "200 OK",
+        "originalRequest" : {
+          "url" : {
+            "protocol" : "http",
+            "host" : "{{host}}",
+            "path" : "/v2/persons/",
+            "query" : [ ]
+          },
+          "method" : "POST",
+          "header" : [ {
+            "key" : "Content-Type",
+            "value" : "application/json"
+          } ],
+          "body" : {
+            "mode" : "raw",
+            "raw" : "{\r\n  \"id\" : 0,\r\n  \"firstName\" : \"\",\r\n  \"lastName\" : \"\",\r\n  \"age\" : 0\r\n}",
+            "urlencoded" : [ ],
+            "formdata" : [ ]
+          }
+        },
+        "header" : [ ],
+        "body" : "{\r\n  \"code\" : 0,\r\n  \"msg\" : \"\"\r\n}",
+        "status" : "OK",
+        "code" : 200,
+        "_postman_previewlanguage" : "json"
+      } ]
+    } ]
+  } ]
+}

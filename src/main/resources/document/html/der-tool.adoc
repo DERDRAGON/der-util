@@ -1,0 +1,246 @@
+= 工具项目标题
+:doctype: book
+:toc: left
+:toclevels: 3
+:toc-title: 目录
+:source-highlighter: highlightjs
+
+[%hardbreaks]
+version:V1.0.0
+
+[%hardbreaks]
+工具项目描述
+
+
+== DisableSwaggerUiControllerConfig
+
+=== getSwagger
+请求
+[source,HTTP ]
+----
+GET /swagger-ui.html HTTP/1.1
+
+----
+
+
+== DemoController
+
+=== test
+请求
+[source,HTTP ]
+----
+GET /demo/test HTTP/1.1
+
+----
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+
+----
+
+
+== api接口文档演示controller
+
+=== ip列表
+请求
+[source,HTTP ]
+----
+GET /docs/list?id=0&ip= HTTP/1.1
+
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+id+|+Integer+||+0+|+主键+
+|+ip+|+String+|||+ip地址+
+|===
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+{
+  "code" : 0,
+  "msg" : "",
+  "data" : [ {
+    "id" : 0,
+    "ip" : ""
+  } ]
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+code+|+Integer+||+0+|+返回码+
+|+msg+|+String+|||+返回信息+
+|+data+|+List+|||+返回数据+
+|+data.[].id+|+Integer+||+0+|+主键+
+|+data.[].ip+|+String+|||+ip地址+
+|===
+
+
+== swagger演示controller
+
+=== getAllPersons
+请求
+[source,HTTP ]
+----
+GET /v2/persons/ HTTP/1.1
+
+----
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+{
+  "code" : 0,
+  "msg" : "",
+  "data" : [ {
+    "id" : 0,
+    "firstName" : "",
+    "lastName" : "",
+    "age" : 0
+  } ]
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+code+|+Integer+||+0+|+返回码+
+|+msg+|+String+|||+返回信息+
+|+data+|+List+|||+返回数据+
+|+data.[].id+|+int+||+0+|
+|+data.[].firstName+|+String+|||
+|+data.[].lastName+|+String+|||
+|+data.[].age+|+int+||+0+|
+|===
+
+
+=== getPersonById
+请求
+[source,HTTP ]
+----
+GET /v2/persons/? HTTP/1.1
+
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+id+|+int+||+0+|
+|===
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+{
+  "code" : 0,
+  "msg" : "",
+  "data" : {
+    "id" : 0,
+    "firstName" : "",
+    "lastName" : "",
+    "age" : 0
+  }
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+code+|+Integer+||+0+|+返回码+
+|+msg+|+String+|||+返回信息+
+|+data+|+PersonVo+|||+返回数据+
+|+data.id+|+int+||+0+|
+|+data.firstName+|+String+|||
+|+data.lastName+|+String+|||
+|+data.age+|+int+||+0+|
+|===
+
+
+=== deletePerson
+请求
+[source,HTTP ]
+----
+DELETE /v2/persons/ HTTP/1.1
+
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+id+|+int+||+0+|
+|===
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+{
+  "code" : 0,
+  "msg" : ""
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+code+|+Integer+||+0+|+返回码+
+|+msg+|+String+|||+返回信息+
+|===
+
+
+=== createPerson
+请求
+[source,HTTP ]
+----
+POST /v2/persons/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "id" : 0,
+  "firstName" : "",
+  "lastName" : "",
+  "age" : 0
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+id+|+int+||+0+|
+|+firstName+|+String+|||
+|+lastName+|+String+|||
+|+age+|+int+||+0+|
+|===
+
+响应
+[source,HTTP ]
+----
+HTTP/1.1 200 OK
+
+{
+  "code" : 0,
+  "msg" : ""
+}
+----
+
+[options="header"]
+|===
+|+名称+|+类型+|+校验+|+默认+|+描述+
+|+code+|+Integer+||+0+|+返回码+
+|+msg+|+String+|||+返回信息+
+|===
+
