@@ -1,6 +1,8 @@
 package com.der.dertool.constants;
 
 import com.der.dertool.enums.StatusCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -10,6 +12,7 @@ import lombok.Data;
  * @create: 2020-07-06 09:59
  */
 @Data
+@ApiModel(value = "返回结果",description = "这是一个总的返回结果")
 public class DerResponse<T> {
 
     /**
@@ -50,16 +53,19 @@ public class DerResponse<T> {
     /**
      * 返回码
      */
+    @ApiModelProperty(value = "返回码", notes = "返回状态码StatusCode里的code", example = "200", position = 1)
     private Integer code;
 
     /**
      * 返回信息
      */
+    @ApiModelProperty(value = "返回信息", notes = "返回状态码StatusCode里的msg，或者自定义", example = "这是一个成功的返回信息", position = 2)
     private String msg;
 
     /**
      * 返回数据
      */
+    @ApiModelProperty(value = "返回数据", notes = "成功的返回数据", position = 3)
     private T data;
 
     public DerResponse(Integer code, String msg, T data) {
