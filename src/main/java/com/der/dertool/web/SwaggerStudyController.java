@@ -75,7 +75,7 @@ public class SwaggerStudyController {
                     @ExtensionProperty(name = "caoshilong", value = "caoshilong@xx.com")
             })
     )
-    @ApiResponses({ @ApiResponse(code = 500, message = "调用失败", response = DerResponse.class) })
+//    @ApiResponses({ @ApiResponse(code = 500, message = "调用失败", response = DerResponse.class) })
     @RequestMapping(value = "change", method = RequestMethod.POST)
     public DerResponse change(@ApiParam(value = "swagger 的vo信息") @ApiParamInclude({"id", "name"}) @RequestBody SwaggerStudyVo swaggerStudyVo) {
         List<SwaggerStudyVo> list = INIT_DATA.stream().filter(swagger -> swagger.getId().equals(swaggerStudyVo.getId())).collect(Collectors.toList());
