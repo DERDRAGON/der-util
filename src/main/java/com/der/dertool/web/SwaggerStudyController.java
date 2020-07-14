@@ -1,5 +1,6 @@
 package com.der.dertool.web;
 
+import com.der.dertool.annotations.ApiParamInclude;
 import com.der.dertool.constants.DerResponse;
 import com.der.dertool.vo.SwaggerStudyVo;
 import com.google.common.collect.Lists;
@@ -60,6 +61,7 @@ public class SwaggerStudyController {
             })
     )
 //    @ResponseHeader(name = "author", description = "作者", response = DerResponse.class)
+//    @ApiResponses({ @ApiResponse(code = 500, message = "调用失败", response = DerResponse.class) })
     @RequestMapping(value = "list", method = {RequestMethod.POST})
     public DerResponse<List<SwaggerStudyVo>> getVoList() {
         return DerResponse.openSuccess(INIT_DATA);
@@ -73,9 +75,9 @@ public class SwaggerStudyController {
                     @ExtensionProperty(name = "caoshilong", value = "caoshilong@xx.com")
             })
     )
-    @ApiResponses({ @ApiResponse(code = 500, message = "修改失败，无对应的参数") })
+    @ApiResponses({ @ApiResponse(code = 500, message = "调用失败", response = DerResponse.class) })
     @RequestMapping(value = "change", method = RequestMethod.POST)
-    public DerResponse change(@ApiParam(value = "swagger 的vo信息") @RequestBody SwaggerStudyVo swaggerStudyVo) {
+    public DerResponse change(@ApiParam(value = "swagger 的vo信息") @ApiParamInclude({"id", "name"}) @RequestBody SwaggerStudyVo swaggerStudyVo) {
         List<SwaggerStudyVo> list = INIT_DATA.stream().filter(swagger -> swagger.getId().equals(swaggerStudyVo.getId())).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(list)) {
             return DerResponse.openFail();

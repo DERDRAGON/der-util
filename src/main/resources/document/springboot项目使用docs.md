@@ -113,6 +113,7 @@ public class DocsGenerator {
 @ApiParamImplicitL：一个请求参数
 @ApiParamsImplicit 多个请求参数
 ```
+[swagger常用注解](./swagger/swagger常用注解.md)
 
 3. 示例
 com.der.dertool.web.PersonController
@@ -120,3 +121,6 @@ com.der.dertool.vo.PersonVo
 
 4. 效果图
 ![](./img/swagger.png)
+
+5. Swagger配置全局Response Model
+[Swagger配置全局Response Model](./swagger/Swagger配置全局ResponseModel.md)

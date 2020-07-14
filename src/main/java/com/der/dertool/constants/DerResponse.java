@@ -12,7 +12,7 @@ import lombok.Data;
  * @create: 2020-07-06 09:59
  */
 @Data
-@ApiModel(value = "返回结果",description = "这是一个总的返回结果")
+@ApiModel(description = "这是一个总的返回结果")
 public class DerResponse<T> {
 
     /**

@@ -2,10 +2,19 @@
   - [Api](#api)
   - [ApiOperation](#apioperation)
   - [ApiParam](#apiparam)
+  - [ApiResponse](#apiresponse)
+  - [ApiResponses](#apiresponses)
+  - [ResponseHeader](#responseheader)
+  - [ApiModel](#apimodel)
+  - [ApiModelProperty](#apimodelproperty)
+  - [ApiImplicitParams](#apiimplicitparams)
+  - [ApiImplicitParam](#apiimplicitparam)
+  - [ApiIgnore](#apiignore)
 
 # swagger常用注解
 
 **常用注解**
+
 - Api
 - ApiModel
 - ApiModelProperty
@@ -230,7 +239,7 @@ ApiResponses：响应集配置，使用方式：
 | name            | 如果设置这个字段，会覆盖原本属性的名字。                     |
 | allowableValues | 标明字段的取值范围，设置的方式有三种<br/>    1.第一种是采用枚举的形式。<br/>     例如：`allowableValues="first, second, third"`<br/>    2.第二种是采用一个有限的范围，例如`"range[1, 5]"`、`"range(1, 5)"`、`"range[1, 5)"`。其中，<br/>     2.1 `[`表示是大于等于<br/>     2.2 `(`表示是大于<br/>     2.3 `]`表示是小于等于<br/>     2.4 `)`表示是小于<br/>    3.标识的是一个无限的范围。其中，我们使用`infinity`表示无限大，使用`-infinity`表示负无限大。<br/>     例如:`"range[1, infinity]"`。 |
 | access          | 这个属性的意思是允许从API文档中过滤属性，详情，我们可以参见`io.swagger.core.filter.SwaggerSpecFilter` |
-| notes           | 预留字段，目前并未被使用                                     |
+| notes           | 预留字段，目前并未被使用(可以当做value使用)                  |
 | dataType        | 参数的数据类型，如果我们设置了这个属性，将被覆盖掉通过内省获得的参数的数据类型。并且这个数据类型可以是基本数据类型，也可以是类的名字。如果是基本数据类型，为了防止抛出`java.lang.NumberFormatException: For input string: ""`的错误<br/>    1.我们可以采用配置`example`属性一起使用<br/>    2.我们可以通过修改`swagger-annotations`和`swagger-models`的版本来避免，修改到`1.6.0`版本即可。 |
 | required        | 当前字段是否是必须的，默认是`false`。                        |
 | position        | 已过时的方法，代表是属性在文档中的位置排序。                 |

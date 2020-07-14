@@ -13,7 +13,12 @@ public enum StatusCode {
     SUCCESS(200, "调用成功"),
     /*  调用失败 */
     FAIL(500, "调用失败"),
+        /*  无用户登录 */
+    NO_USER_ERROR(600, "无用户登录"),
+    /*  用户权限有误 */
+    USER_AUTH_ERROR(630, "用户权限有误"),
     ;
+
 
     /**
      * 反应码

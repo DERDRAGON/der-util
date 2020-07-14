@@ -1,4 +1,4 @@
-package com.der.dertool.configuration;
+package com.der.dertool.configuration.swagger;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
