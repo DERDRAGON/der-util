@@ -1,6 +1,9 @@
 package com.der.dertool.util;
 
+import com.der.dertool.vo.SwaggerStudyVo;
+
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Field;
 
 /**
  * @program: der-tool
@@ -28,6 +31,30 @@ public class WebIpUtil {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    public static void main(String[] args) {
+        Field[] fields = SwaggerStudyVo.class.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field.getName());
+        }
+        Class<? super SwaggerStudyVo> superclass = SwaggerStudyVo.class.getSuperclass();
+        System.out.println("sc" + superclass.getName());
+        Field[] fields1 = superclass.getDeclaredFields();
+        for (Field field : fields1) {
+            System.out.println(field.getName());
+        }
+//        System.out.println("=================");
+//        Class<? super IpVo> aClass = IpVo.class.getSuperclass();
+//        System.out.println(aClass == Object.class);
+//        try {
+//            //直接获取父类的属性，报错
+//            Field pageNo = SwaggerStudyVo.class.getDeclaredField("pageNo");
+//            ApiModelProperty annotation = pageNo.getAnnotation(ApiModelProperty.class);
+//            System.out.println(annotation);
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

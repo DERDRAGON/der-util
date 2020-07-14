@@ -1,5 +1,6 @@
 package com.der.dertool.vo;
 
+import com.der.dertool.constants.Pager;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "swaggerStudyVo", description = "swagger的学习OV描述")
-public class SwaggerStudyVo {
+public class SwaggerStudyVo extends Pager {
 
     @ApiModelProperty(value = "这是VO的主键", name = "ID", notes = "这是一个参数ID", required = true, position = 1)
     private Integer id;

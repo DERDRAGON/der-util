@@ -77,7 +77,7 @@ public class SwaggerStudyController {
     )
 //    @ApiResponses({ @ApiResponse(code = 500, message = "调用失败", response = DerResponse.class) })
     @RequestMapping(value = "change", method = RequestMethod.POST)
-    public DerResponse change(@ApiParam(value = "swagger 的vo信息") @ApiParamInclude({"id", "name"}) @RequestBody SwaggerStudyVo swaggerStudyVo) {
+    public DerResponse change(@ApiParam(value = "swagger 的vo信息") @ApiParamInclude({"id", "name", "pageNo"}) @RequestBody SwaggerStudyVo swaggerStudyVo) {
         List<SwaggerStudyVo> list = INIT_DATA.stream().filter(swagger -> swagger.getId().equals(swaggerStudyVo.getId())).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(list)) {
             return DerResponse.openFail();

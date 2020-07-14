@@ -9,9 +9,13 @@ import com.alibaba.ttl.internal.javassist.bytecode.ConstPool;
 import com.alibaba.ttl.internal.javassist.bytecode.annotation.Annotation;
 import com.alibaba.ttl.internal.javassist.bytecode.annotation.StringMemberValue;
 import com.der.dertool.annotations.ApiParamInclude;
+import com.der.dertool.util.RandomNumUtils;
 import com.fasterxml.classmate.TypeResolver;
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -26,7 +30,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -42,14 +45,33 @@ public class MapApiReader implements ParameterBuilderPlugin {
     @Resource
     private TypeResolver typeResolver;
 
+    /**
+     * 字段类名联合内部类
+     */
+    @AllArgsConstructor
+    class ClazzFieldCombine {
+
+        /**
+         * 字段名
+         */
+        @Getter
+        private Field field;
+
+        /**
+         * 类
+         */
+        @Getter
+        private Class aClass;
+    }
+
     @Override
     public void apply(ParameterContext parameterContext) {
         ResolvedMethodParameter methodParameter = parameterContext.resolvedMethodParameter();
         Optional<ApiParamInclude> annotation = methodParameter.findAnnotation(ApiParamInclude.class);
         Class originClass = parameterContext.resolvedMethodParameter().getParameterType().getErasedType();
         if (annotation.isPresent()) {
-            Random random = new Random();
-            String name = originClass.getSimpleName() + "Model" + random.nextInt(100);  //model 名称
+            //model 名称
+            String name = originClass.getSimpleName() + "Model" + RandomNumUtils.getNextInHundred();
             String[] properties = annotation.get().value();
             try {
                 parameterContext.getDocumentationContext()
@@ -77,17 +99,17 @@ public class MapApiReader implements ParameterBuilderPlugin {
         ClassPool pool = ClassPool.getDefault();
         CtClass ctClass = pool.makeClass(name);
         try {
-            Field[] fields = origin.getDeclaredFields();
-            List<Field> fieldList = Arrays.asList(fields);
             List<String> includePropertys = Arrays.asList(propertys);
-            List<Field> dealFileds = fieldList.stream().filter(s -> includePropertys.contains(s.getName())).collect(Collectors.toList());
-            for (Field field : dealFileds) {
+            List<ClazzFieldCombine> list = getAllCombine(includePropertys, origin);
+            for (ClazzFieldCombine combine : list) {
+                Field field = combine.getField();
+                Class aClass = combine.getAClass();
                 CtField ctField = new CtField(ClassPool.getDefault().get(field.getType().getName()), field.getName(), ctClass);
                 ctField.setModifiers(Modifier.PUBLIC);
-                ApiModelProperty ampAnno = origin.getDeclaredField(field.getName()).getAnnotation(ApiModelProperty.class);
+                ApiModelProperty ampAnno = aClass.getDeclaredField(field.getName()).getAnnotation(ApiModelProperty.class);
                 String attributes = java.util.Optional.ofNullable(ampAnno).map(s->s.value()).orElse("");
                 //添加model属性说明
-                if (StringUtils.isNotBlank(attributes) ){
+                if (StringUtils.isNotBlank(attributes)){
                     ConstPool constPool = ctClass.getClassFile().getConstPool();
                     AnnotationsAttribute attr = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
                     Annotation ann = new Annotation(ApiModelProperty.class.getName(), constPool);
@@ -102,6 +124,28 @@ public class MapApiReader implements ParameterBuilderPlugin {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 获取所有内部字段并过滤（包括父类）
+     * @param includePropertys 需要的字段
+     * @param origin 原生类
+     * @return 过滤后的内容
+     */
+    private List<ClazzFieldCombine> getAllCombine(final List<String> includePropertys, Class origin) {
+        final List<ClazzFieldCombine> clazzFieldCombines = Lists.newArrayList();
+        // 类不为空且不等于Object的这个顶级父类
+        while (null != origin && !(origin  == Object.class)) {
+            final Class combineClazz =  origin;
+            List<ClazzFieldCombine> combineList = Lists.newArrayList(combineClazz.getDeclaredFields()).stream()
+                    //过滤需要的属性(include中包含，且子类field中没有的)
+                    .filter(s -> includePropertys.contains(s.getName()) && clazzFieldCombines.stream().noneMatch(combine -> s.getName().equals(combine.getField().getName())))
+                    //转化为工具类
+                    .map(field -> new ClazzFieldCombine(field, combineClazz)).collect(Collectors.toList());
+            clazzFieldCombines.addAll(combineList);
+            origin = origin.getSuperclass();
+        }
+        return clazzFieldCombines;
     }
 
     @Override
