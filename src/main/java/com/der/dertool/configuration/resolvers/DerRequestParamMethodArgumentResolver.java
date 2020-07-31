@@ -48,7 +48,10 @@ public class DerRequestParamMethodArgumentResolver extends AbstractNamedValueMet
             }
         }
         if (arg == null) {
-            arg = getValueFromRequest(request.getNativeRequest(BodyReadHttpServletRequestWrapper.class), parameter.getParameter().getType(), name);
+            BodyReadHttpServletRequestWrapper requestWrapper = request.getNativeRequest(BodyReadHttpServletRequestWrapper.class);
+            if (null != requestWrapper) {
+                arg = getValueFromRequest(requestWrapper, parameter.getParameter().getType(), name);
+            }
         }
         return arg;
     }
